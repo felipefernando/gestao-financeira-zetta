@@ -16,7 +16,10 @@ interface Debt {
 interface CreditPurchase {
   id: string;
   description: string;
-  amount: number;
+  totalAmount: number;
+  installments: number;
+  installmentValue: number;
+  paidInstallments: number;
   personName: string;
   date: string;
   isPaid: boolean;
@@ -48,7 +51,9 @@ export const MonthlySummary = ({
     debt.isPaid ? 0 : sum + debt.installmentValue, 0
   );
   const totalFixedExpenses = fixedExpenses.reduce((sum, expense) => sum + expense.amount, 0);
-  const pendingCreditReceivables = creditPurchases.filter(p => !p.isPaid).reduce((sum, p) => sum + p.amount, 0);
+  const pendingCreditReceivables = creditPurchases
+    .filter(p => !p.isPaid)
+    .reduce((sum, p) => sum + ((p.installments - p.paidInstallments) * p.installmentValue), 0);
   
   const totalMonthlyExpenses = monthlyDebtPayments + totalFixedExpenses;
   const finalBalance = monthlyIncome - totalMonthlyExpenses + pendingCreditReceivables;
@@ -216,18 +221,21 @@ export const MonthlySummary = ({
             {creditPurchases.filter(p => !p.isPaid).length === 0 ? (
               <p className="text-gray-500">Nenhuma compra pendente</p>
             ) : (
-              creditPurchases.filter(p => !p.isPaid).map((purchase) => (
-                <div key={purchase.id} className="flex justify-between items-center p-2 bg-white/50 rounded">
-                  <div>
-                    <p className="font-medium">{purchase.description}</p>
-                    <p className="text-sm text-gray-600">{purchase.personName}</p>
+              creditPurchases.filter(p => !p.isPaid).map((purchase) => {
+                const remainingAmount = (purchase.installments - purchase.paidInstallments) * purchase.installmentValue;
+                return (
+                  <div key={purchase.id} className="flex justify-between items-center p-2 bg-white/50 rounded">
+                    <div>
+                      <p className="font-medium">{purchase.description}</p>
+                      <p className="text-sm text-gray-600">{purchase.personName}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold text-orange-600">R$ {remainingAmount.toLocaleString('pt-BR')}</p>
+                      <p className="text-sm text-gray-600">{new Date(purchase.date).toLocaleDateString('pt-BR')}</p>
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="font-semibold text-orange-600">R$ {purchase.amount.toLocaleString('pt-BR')}</p>
-                    <p className="text-sm text-gray-600">{new Date(purchase.date).toLocaleDateString('pt-BR')}</p>
-                  </div>
-                </div>
-              ))
+                );
+              })
             )}
           </CardContent>
         </Card>
