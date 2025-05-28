@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -205,30 +204,24 @@ const Index = () => {
 
         {/* Tabs Navigation */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 gap-1">
-            <TabsTrigger value="dashboard" className="text-xs sm:text-sm px-1 sm:px-3">
-              <span className="hidden sm:inline">Dashboard</span>
-              <span className="sm:hidden">Home</span>
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 p-1">
+            <TabsTrigger value="dashboard" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+              Dashboard
             </TabsTrigger>
-            <TabsTrigger value="debts" className="text-xs sm:text-sm px-1 sm:px-3">
-              <span className="hidden sm:inline">Dívidas</span>
-              <span className="sm:hidden">Dívidas</span>
+            <TabsTrigger value="debts" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+              Dívidas
             </TabsTrigger>
-            <TabsTrigger value="credit" className="text-xs sm:text-sm px-1 sm:px-3">
-              <span className="hidden sm:inline">Cartão</span>
-              <span className="sm:hidden">Cartão</span>
+            <TabsTrigger value="credit" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+              Cartão
             </TabsTrigger>
-            <TabsTrigger value="expenses" className="text-xs sm:text-sm px-1 sm:px-3">
-              <span className="hidden sm:inline">Gastos Fixos</span>
-              <span className="sm:hidden">Gastos</span>
+            <TabsTrigger value="expenses" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+              Gastos
             </TabsTrigger>
-            <TabsTrigger value="income" className="text-xs sm:text-sm px-1 sm:px-3">
-              <span className="hidden sm:inline">Rendas</span>
-              <span className="sm:hidden">Rendas</span>
+            <TabsTrigger value="income" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+              Rendas
             </TabsTrigger>
-            <TabsTrigger value="summary" className="text-xs sm:text-sm px-1 sm:px-3">
-              <span className="hidden sm:inline">Resumo</span>
-              <span className="sm:hidden">Resumo</span>
+            <TabsTrigger value="summary" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+              Resumo
             </TabsTrigger>
           </TabsList>
 
