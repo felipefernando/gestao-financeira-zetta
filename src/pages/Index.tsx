@@ -205,13 +205,31 @@ const Index = () => {
 
         {/* Tabs Navigation */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-6 lg:grid-cols-7">
-            <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-            <TabsTrigger value="debts">Dívidas</TabsTrigger>
-            <TabsTrigger value="credit">Cartão</TabsTrigger>
-            <TabsTrigger value="expenses">Gastos Fixos</TabsTrigger>
-            <TabsTrigger value="income">Rendas</TabsTrigger>
-            <TabsTrigger value="summary">Resumo</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 gap-1">
+            <TabsTrigger value="dashboard" className="text-xs sm:text-sm px-1 sm:px-3">
+              <span className="hidden sm:inline">Dashboard</span>
+              <span className="sm:hidden">Home</span>
+            </TabsTrigger>
+            <TabsTrigger value="debts" className="text-xs sm:text-sm px-1 sm:px-3">
+              <span className="hidden sm:inline">Dívidas</span>
+              <span className="sm:hidden">Dívidas</span>
+            </TabsTrigger>
+            <TabsTrigger value="credit" className="text-xs sm:text-sm px-1 sm:px-3">
+              <span className="hidden sm:inline">Cartão</span>
+              <span className="sm:hidden">Cartão</span>
+            </TabsTrigger>
+            <TabsTrigger value="expenses" className="text-xs sm:text-sm px-1 sm:px-3">
+              <span className="hidden sm:inline">Gastos Fixos</span>
+              <span className="sm:hidden">Gastos</span>
+            </TabsTrigger>
+            <TabsTrigger value="income" className="text-xs sm:text-sm px-1 sm:px-3">
+              <span className="hidden sm:inline">Rendas</span>
+              <span className="sm:hidden">Rendas</span>
+            </TabsTrigger>
+            <TabsTrigger value="summary" className="text-xs sm:text-sm px-1 sm:px-3">
+              <span className="hidden sm:inline">Resumo</span>
+              <span className="sm:hidden">Resumo</span>
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="dashboard" className="space-y-4">
