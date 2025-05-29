@@ -1,4 +1,6 @@
+
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -167,6 +169,14 @@ const Index = () => {
             Gestão Financeira Pessoal
           </h1>
           <p className="text-gray-600 text-lg">Controle suas finanças de forma inteligente</p>
+          <div className="mt-4">
+            <Link to="/shopping-lists">
+              <Button variant="outline" className="flex items-center gap-2">
+                <ShoppingCart className="h-4 w-4" />
+                Ir para Listas de Compras
+              </Button>
+            </Link>
+          </div>
         </div>
 
         {/* Dashboard Cards */}
@@ -269,7 +279,7 @@ const Index = () => {
 
         {/* Tabs Navigation */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 sm:grid-cols-9 gap-1 h-auto p-1">
+          <TabsList className="grid w-full grid-cols-4 sm:grid-cols-8 gap-1 h-auto p-1">
             <TabsTrigger value="dashboard" className="text-xs px-2 py-2 data-[state=active]:bg-background">
               Dashboard
             </TabsTrigger>
@@ -293,9 +303,6 @@ const Index = () => {
             </TabsTrigger>
             <TabsTrigger value="investment" className="text-xs px-2 py-2 data-[state=active]:bg-background">
               Investimento
-            </TabsTrigger>
-            <TabsTrigger value="shopping" className="text-xs px-2 py-2 data-[state=active]:bg-background">
-              Compras
             </TabsTrigger>
           </TabsList>
 
