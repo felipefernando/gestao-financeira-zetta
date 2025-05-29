@@ -325,7 +325,7 @@ const Index = () => {
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold text-gray-800">Parcelas a Receber</h2>
             </div>
-            <InstallmentsList creditPurchases={creditPurchases} />
+            <InstallmentsList purchases={creditPurchases} />
           </TabsContent>
 
           <TabsContent value="expenses" className="space-y-4">
