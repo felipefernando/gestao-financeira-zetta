@@ -204,23 +204,23 @@ const Index = () => {
 
         {/* Tabs Navigation */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-6 p-1">
-            <TabsTrigger value="dashboard" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 h-[7.5rem] sm:h-auto">
+            <TabsTrigger value="dashboard" className="text-xs sm:text-sm whitespace-nowrap px-2 py-1.5 data-[state=active]:bg-background">
               Dashboard
             </TabsTrigger>
-            <TabsTrigger value="debts" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+            <TabsTrigger value="debts" className="text-xs sm:text-sm whitespace-nowrap px-2 py-1.5 data-[state=active]:bg-background">
               Dívidas
             </TabsTrigger>
-            <TabsTrigger value="credit" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+            <TabsTrigger value="credit" className="text-xs sm:text-sm whitespace-nowrap px-2 py-1.5 data-[state=active]:bg-background">
               Cartão
             </TabsTrigger>
-            <TabsTrigger value="expenses" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+            <TabsTrigger value="expenses" className="text-xs sm:text-sm whitespace-nowrap px-2 py-1.5 data-[state=active]:bg-background">
               Gastos
             </TabsTrigger>
-            <TabsTrigger value="income" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+            <TabsTrigger value="income" className="text-xs sm:text-sm whitespace-nowrap px-2 py-1.5 data-[state=active]:bg-background">
               Rendas
             </TabsTrigger>
-            <TabsTrigger value="summary" className="text-xs px-2 py-1 data-[state=active]:bg-background">
+            <TabsTrigger value="summary" className="text-xs sm:text-sm whitespace-nowrap px-2 py-1.5 data-[state=active]:bg-background">
               Resumo
             </TabsTrigger>
           </TabsList>
