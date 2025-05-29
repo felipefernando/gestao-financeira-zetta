@@ -13,6 +13,7 @@ import { ExtraIncomeList } from "@/components/ExtraIncomeList";
 import { InstallmentsList } from "@/components/InstallmentsList";
 import { InvestmentSettings } from "@/components/InvestmentSettings";
 import { SporadicExpenses } from "@/components/SporadicExpenses";
+import { ShoppingList } from "@/components/ShoppingList";
 
 interface Debt {
   id: string;
@@ -56,6 +57,14 @@ interface SporadicExpense {
   date: string;
 }
 
+interface ShoppingItem {
+  id: string;
+  name: string;
+  quantity: number;
+  price: number;
+  total: number;
+}
+
 const Index = () => {
   const [debts, setDebts] = useState<Debt[]>([]);
   const [creditPurchases, setCreditPurchases] = useState<CreditPurchase[]>([]);
@@ -66,6 +75,7 @@ const Index = () => {
   const [investmentPercentage, setInvestmentPercentage] = useState<number>(10);
   const [isAddDebtOpen, setIsAddDebtOpen] = useState(false);
   const [isIncomeDialogOpen, setIsIncomeDialogOpen] = useState(false);
+  const [shoppingItems, setShoppingItems] = useState<ShoppingItem[]>([]);
 
   const totalDebts = debts.reduce((sum, debt) => sum + (debt.totalValue - (debt.paidInstallments * debt.installmentValue)), 0);
   const totalCreditPurchases = creditPurchases
@@ -133,6 +143,20 @@ const Index = () => {
 
   const deleteSporadicExpense = (expenseId: string) => {
     setSporadicExpenses(sporadicExpenses.filter(expense => expense.id !== expenseId));
+  };
+
+  const addShoppingItem = (item: Omit<ShoppingItem, 'id' | 'total'>) => {
+    const total = item.quantity * item.price;
+    const newItem = { 
+      ...item, 
+      id: Date.now().toString(),
+      total 
+    };
+    setShoppingItems([...shoppingItems, newItem]);
+  };
+
+  const deleteShoppingItem = (itemId: string) => {
+    setShoppingItems(shoppingItems.filter(item => item.id !== itemId));
   };
 
   return (
@@ -245,7 +269,7 @@ const Index = () => {
 
         {/* Tabs Navigation */}
         <Tabs defaultValue="dashboard" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 sm:grid-cols-8 gap-1 h-auto p-1">
+          <TabsList className="grid w-full grid-cols-4 sm:grid-cols-9 gap-1 h-auto p-1">
             <TabsTrigger value="dashboard" className="text-xs px-2 py-2 data-[state=active]:bg-background">
               Dashboard
             </TabsTrigger>
@@ -269,6 +293,9 @@ const Index = () => {
             </TabsTrigger>
             <TabsTrigger value="investment" className="text-xs px-2 py-2 data-[state=active]:bg-background">
               Investimento
+            </TabsTrigger>
+            <TabsTrigger value="shopping" className="text-xs px-2 py-2 data-[state=active]:bg-background">
+              Compras
             </TabsTrigger>
           </TabsList>
 
@@ -367,6 +394,17 @@ const Index = () => {
               onUpdatePercentage={setInvestmentPercentage}
               availableBalance={availableBalance}
               suggestedInvestment={suggestedInvestment}
+            />
+          </TabsContent>
+
+          <TabsContent value="shopping" className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold text-gray-800">Lista de Compras</h2>
+            </div>
+            <ShoppingList 
+              items={shoppingItems}
+              onAddItem={addShoppingItem}
+              onDeleteItem={deleteShoppingItem}
             />
           </TabsContent>
 
